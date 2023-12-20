@@ -19,7 +19,7 @@ ___
 - Git can manage the code versioning, while DVC manages the data versioning. Hence, providing us the means to manage both in a unified manner.
 
   
-  <img width="519" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/21def4cf-9e99-4b5e-a64a-c2d261a1520f">
+  <img width="400" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/21def4cf-9e99-4b5e-a64a-c2d261a1520f">
 
 ___
 ### DVC Storage
@@ -175,7 +175,7 @@ python train.py
 ```
 
 - The corresponding `dvc.yaml` file must look like 
-<img width="100" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/e31bba0e-34ee-4fd9-9707-1c3255f26940">
+<img width="200" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/e31bba0e-34ee-4fd9-9707-1c3255f26940">
 
 
 ### Reproducing a DVC Pipeline
