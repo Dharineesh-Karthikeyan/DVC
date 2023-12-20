@@ -15,6 +15,8 @@ DVC (Data Version Control) - CI/CD For ML
 - It is an open source tool to manage data (Similar to git).
 - The strenght of DVC is its integration with Git.
 - Git can manage the code versioning, while DVC manages the data versioning. Hence, providing us the means to manage both in a unified manner.
+
+  
   <img width="519" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/21def4cf-9e99-4b5e-a64a-c2d261a1520f">
 
 ### DVC Storage
