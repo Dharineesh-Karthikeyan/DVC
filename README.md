@@ -108,7 +108,7 @@ To override the default remote,
 
     `dvc push -r AWSremote <target>`
 
-**NOTE : <target> here is the datafile and not metadata file**
+> **NOTE : "target" here is the datafile and not metadata file**
 
 ___
 ### Tracking Data Changes
@@ -140,3 +140,58 @@ dvc push
 ```
 
 ___
+### DVC Pipelines
+- In actual ML use cases, data needs to be filtered, cleaned and transformed before training ML models.
+- Additionally, there is no need to repeat steps and only run what we need.
+
+- A DVC Pipeline is a structured sequence of stages that defines the workflow and dependencies for a ML or data processing task.
+- These steps are defined in a `dvc.yaml` file. This configures the different stages of the pipeline.
+    - `deps` : Input data and scripts (e.g preprocessing or training code files)
+    - `cmd` : Stage Execution commands (e.g running Python scripts)
+    - `outs` : Output artifacts (e.g processed dataset, metrics, plots)
+- A little similar to the Github Actions workflow but more focused towards ML tasks.
+
+### Defining Pipeline Stages
+- Create stages using `dvc stage add`
+  
+```
+dvc stage add \
+-n preprocess \
+-d data.csv -d preprocess.py \
+-o processed_data.csv \
+python preprocess.py
+```
+
+- 'n' for name, 'd' for dependencies and 'o' for output and the command at the end.
+- This creates the corresponding `dvc.yaml` file filled with the `cmd, deps and outs` as mentioned in the command.
+- We can add another stage that goes after the first 'preprocess stage' by adding another command as such
+
+```
+dvc stage add \
+-n train \
+-d processed_data.csv -d train.py \
+-o plots.png -o metrics.json \
+python train.py
+```
+
+- The corresponding `dvc.yaml` file must look like 
+<img width="100" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/e31bba0e-34ee-4fd9-9707-1c3255f26940">
+
+
+### Reproducing a DVC Pipeline
+- Reproduce the pipeline using `dvc repro`
+- As for our example, this commands runs the preprocess and train step one after another.
+- A state file `dvc.lock` is created. This file is very similar to a `.dvc` file. It stores the metainformation of the pipeline.
+- It is good practice to commit to Git immediately after creation or modification to record the current state of the pipeline.
+  
+```
+git add dvc.lock
+git commit -m "Pipeline Repro"
+```
+
+
+> **NOTE : Using **Cached Result** when we try to rerun the pipeline, if there is no changes in the dependencies, it will skip its execution.**
+
+
+### Visualize the dependencies
+If we want to visualize the dependencies between the stages with the help of a DAG (Directed Acyclic Graph), we can run the command `dvc dag`
