@@ -34,8 +34,7 @@ If we need to install DVC, follow
 ```python
 pip install dvc
 ```
-
-
+<br></br>
 **Step 1** : DVC works in conjunction with Git, hence we need to initialize git first.
 
 `git status`
@@ -61,4 +60,83 @@ ___
     - path : File path of the tracked data file.
  
 ___
+### DVC Remotes
+- DVC uses external storage locations called DVC Remotes to track and share data and ML Models.
+- Similar to Git Remote, but for cached data.
+- Benefits:
+    - Sync with large files and directories
+    - Centralize and distribute data storage
+    - Save Local Space
+- Supported Storage Types
+    - Amazon S3, GCS, Google Drive
+    - SSH, HTTP/HTTPS, Local file system
 
+____
+### Setting Up DVC Remotes
+- Set up using `dvc remote add` command.
+- For example, we can set an AWS S3 bucket named "mybucket" as a remote DVC and name it "AWSremote"
+
+    `dvc remote add AWSremote s3://mybucket`
+
+- These add the remote and settings into the project's `.dvc/config`.
+- If we want to add customized settings to the DVC remote, we do it as such
+
+    `dvc remote modify AWSremote connect_timeout 300`
+
+- This change will be reflected in the config file at `.dvc/config`
+<br></br>
+
+### Local and Default Remotes
+- Use system directories, file systems, mounted drives or Network Attached Storage
+
+    `dvc remote add localremote /tmp/dvc`
+
+- In order to set this remote as the **default** remote,
+
+    `dvc remote add -d localremote /tmp/dvc`
+
+- Hence, all commands that require a remote such as `dvc push, dvc pull, dvc fetch` will be using this remote by default to upload or download data.
+
+___
+### Uploading and Downloading Data
+The commands to transfer data are:
+- Push to Remote : `dvc push <target>`
+- Pull from Remote : `dvc pull <target>`
+
+If we don't mention the target, all the data will be pushed or pulled.
+To override the default remote,
+
+    `dvc push -r AWSremote <target>`
+
+**NOTE : <target> here is the datafile and not metadata file**
+
+___
+### Tracking Data Changes
+If the contents of the data file changes, the following steps are needed to keep track of the changes with DVC.
+
+**Step 1** : Stage changes to the DVC cache (This also changes the .dvc file)
+
+```
+dvc add /path/to/datafile
+```
+
+**Step 2** : Stage and commit the new .dvc file to Git
+
+```
+git add /path/to/datafile.dvc
+git commit /path/to/datafile.dvc -m "Dataset Updates"
+```
+
+**Step 3** : Push metadata to Git
+
+```
+git push origin main
+```
+
+**Step 4** : Push Changed Data File
+
+```
+dvc push 
+```
+
+___
