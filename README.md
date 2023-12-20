@@ -33,7 +33,7 @@ pip install dvc
 
 **Step 1** : DVC works in conjunction with Git, hence we need to initialize git first.
   `git status`
-** Step 2** : Initialize DVC
+\n** Step 2** : Initialize DVC
   `dvc init`
 
 ### Adding Files to DVC
