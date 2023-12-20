@@ -1,5 +1,4 @@
-# DVC
-DVC (Data Version Control) - CI/CD For ML
+# DVC (Data Version Control)
 
 ### What is Data Versioning
 - Versioning provides history record of changes to data.
