@@ -1,4 +1,4 @@
-# Advanced DVC
+# DVC - Metrics and Plots
 
 DVC can be used to track and compare the performance metrics and visualize plots between various versions of the ML task. 
 
