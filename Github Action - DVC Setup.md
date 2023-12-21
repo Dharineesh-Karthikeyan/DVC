@@ -46,8 +46,8 @@ stages:
 ### CML Github Action
 
 The main steps to setup DVC and execute the pipeline are :
-1. Setup DVC GitHub Action iterative/setup-dvc@v1.
-2. Run DVC pipeline in Run DVC pipeline step.
+1. Setup DVC GitHub Action `iterative/setup-dvc@v1.`
+2. Run DVC pipeline in Run DVC pipeline step using `dvc repro` command
 
 The CML Github Action yaml file looks like,
 ```yaml
