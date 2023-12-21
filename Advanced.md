@@ -50,9 +50,11 @@ dvc metrics diff
 
 If we want to compare with a specific branch,
 ```yaml
-dvc metrics diff main
+dvc metrics diff main --md
 ```
-<img width="400" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/59e058c5-0f2e-4fc3-a8d6-778b34587ad9">
+> --md returns the result in a table format
+<img width="400" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/86647a3c-d86f-4563-9520-1bb6175b5c91">
+
 
 
 ___
