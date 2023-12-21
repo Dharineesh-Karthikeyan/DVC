@@ -39,6 +39,7 @@ If we want to see the current metrics on the terminal (metrics.json will be disp
 ```yaml
 dvc metrics show
 ```
+<img width="400" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/779ab969-3ed6-435d-9e13-9d129cd48512">
 
 ### Comparing Metrics
 If we make a change in the training and push the new version using `dvc repro`.
@@ -46,6 +47,13 @@ Next, we can compare metrics with the previous versions, by running
 ```yaml
 dvc metrics diff
 ```
+
+If we want to compare with a specific branch,
+```yaml
+dvc metrics diff main
+```
+<img width="400" alt="image" src="https://github.com/Dharineesh-Karthikeyan/DVC/assets/12586329/59e058c5-0f2e-4fc3-a8d6-778b34587ad9">
+
 
 ___
 ### Plots
