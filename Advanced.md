@@ -47,5 +47,24 @@ Next, we can compare metrics with the previous versions, by running
 dvc metrics diff
 ```
 
-
+___
+### Plots
+We can render plots in DVC using their templates such as `scatter, linear, simple, smooth, confusion, confusion_normalized, bar_horizontal, bar_horizontal_sorted`.
+DVC does not track the image plots, but rather plots the data files.
+The data file name serves as the target name which needs to be referenced under the `plot` keys.
+```yaml
+stages:
+  train:
+  ...
+  plots:
+    - predictions.csv: # Target data file
+      template: confusion # Style of Plot
+      x: y_pred
+      y: y_true
+      x_label: 'Prediction Values'
+      y_label: 'True Values'
+      title: Confusion Matrix
+      cache: false
+```
+> The parameter cache: false, is to indicate that the metrics file must be tracked in Git and not DVC.
 
