@@ -68,3 +68,41 @@ stages:
 ```
 > The parameter cache: false, is to indicate that the metrics file must be tracked in Git and not DVC.
 
+### Plotting the Plots
+We can view the plots by referencing the target data file and,
+```yaml
+dvc plots show predictions.csv
+```
+By default, it returns the path to an HTML file, which is embedded with the interactive plots.
+
+### Comparing Plots
+In order to compare the plots, we can compare them between branches. Hence, we need to pass the target data file and the branch to compare it with,
+```yaml
+dvc plots diff --target predictions.csv main
+```
+This plots the confusion matrixes side-by-side and make it easier to compare them.
+
+### Comparing Different Type of Plots:
+Let's say we want to plot the ROC curve, we can do so with the help of a Python script.
+```python
+# Snippet of the python code
+y_proba = model.predict_proba(x_test)
+fpr,tpr,_ = roc_curve(y_test,y_proba)
+```
+
+The `dvc.yaml` file needs to be updated as well
+```yaml
+# Snippet of changes to yaml file
+train:
+...
+  plots:
+    - roc_curve.csv:
+        template: linear # Linear type of graph
+        x: fpr
+        y: tpr
+        x_label: 'False Positive Rate'
+        y_label: 'True Positive Rate'
+        title: 'ROC Curve'
+        cache: false
+```
+
