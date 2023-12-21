@@ -188,9 +188,32 @@ git add dvc.lock
 git commit -m "Pipeline Repro"
 ```
 
-
 > **NOTE : Using **Cached Result** when we try to rerun the pipeline, if there is no changes in the dependencies, it will skip its execution.**
 
 
 ### Visualize the dependencies
 If we want to visualize the dependencies between the stages with the help of a DAG (Directed Acyclic Graph), we can run the command `dvc dag`
+
+___
+
+### USE CASES: (With an example)
+1. The data is originally present in local.
+2. We initialize git and dvc.
+3. DVC add to create the .dvc file containing the metadata.
+4. Git add and commit the .dvc file.
+5. Set up a cloud storage as our DVC remote.
+6. Git commit .dvc/config so that we record the metadata of the remote server we created.
+7. DCV push the data to the cloud storage (DVC remote).
+
+> The .dcv file is backed up in the Git and the data is backed up in the cloud. The git uses the .dcv file to access the data file present in the cloud (which is the dvc remote).
+<br></br>
+> The .gitignore file that is created during dcv init, is the reason the local data does not get commited in Git.
+
+
+### Backtracking 
+1. We can look at the git logs to see all previous commits and identify which version we are trying to backtrack to.
+2. Git checkout <version> <file_name> (In our case the .dcv file)
+3. dvc checkout - updates the data to the same version as well (No parameters required)
+4. Git commit the .dcv file just to make sure the update is committed.
+
+> Note: We do not need to perform a dvc add as it is already backtracked.
