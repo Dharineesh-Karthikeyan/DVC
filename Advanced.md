@@ -39,3 +39,13 @@ If we want to see the current metrics on the terminal (metrics.json will be disp
 ```yaml
 dvc metrics show
 ```
+
+### Comparing Metrics
+If we make a change in the training and push the new version using `dvc repro`.
+Next, we can compare metrics with the previous versions, by running
+```yaml
+dvc metrics diff
+```
+
+
+
