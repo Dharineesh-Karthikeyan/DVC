@@ -18,5 +18,24 @@ stages:
     - confusion_matrix.png
 ```
 
-
 After:
+```yaml
+stages:
+  preprocess:
+  ...
+
+  train:
+  ...
+  outs:
+    - confusion_matrix.png
+  metrics:
+    - metrics.json:
+        cache:false
+```
+> The parameter cache: false, is to indicate that the metrics file must be tracked in Git and not DVC.
+
+### Show Current Metrics
+If we want to see the current metrics on the terminal (metrics.json will be displayed here)
+```yaml
+dvc metrics show
+```
