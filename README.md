@@ -115,26 +115,26 @@ If the contents of the data file changes, the following steps are needed to keep
 
 **Step 1** : Stage changes to the DVC cache (This also changes the .dvc file)
 
-```
+```dvc
 dvc add /path/to/datafile
 ```
 
 **Step 2** : Stage and commit the new .dvc file to Git
 
-```
+```git
 git add /path/to/datafile.dvc
 git commit /path/to/datafile.dvc -m "Dataset Updates"
 ```
 
 **Step 3** : Push metadata to Git
 
-```
+```git
 git push origin main
 ```
 
 **Step 4** : Push Changed Data File
 
-```
+```dvc
 dvc push 
 ```
 
