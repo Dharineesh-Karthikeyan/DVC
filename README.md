@@ -179,6 +179,7 @@ python train.py
 
 ### Reproducing a DVC Pipeline
 - Reproduce the pipeline using `dvc repro`
+- We can also reproduce an indivijual stage using `dvc repro <stage_name>`
 - As for our example, this commands runs the preprocess and train step one after another.
 - A state file `dvc.lock` is created. This file is very similar to a `.dvc` file. It stores the metainformation of the pipeline.
 - It is good practice to commit to Git immediately after creation or modification to record the current state of the pipeline.
